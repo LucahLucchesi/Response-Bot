@@ -1,7 +1,10 @@
+// import token, discord library, and config vars
 require('dotenv').config();
 const { Client, IntentsBitField } = require('discord.js');
-const { replyRate, responses} = require('./config.json')
+const { replyRate, responses } = require('./config.json')
 
+// client represents the bot
+// intents are discord events that the bot listens to
 const client = new Client({
     intents: [
         IntentsBitField.Flags.Guilds,
@@ -11,10 +14,13 @@ const client = new Client({
     ]
 });
 
+// console message on bot start
 client.on('ready', (c) => {
     console.log(`${c.user.tag} is online`);
 });
 
+// reply when message is sent
+// does not reply if the message author is a bot or the reply roll fails
 client.on('messageCreate', (message) => {
     if(message.author.bot) return;
     if(message.mentions.has(client.user) || Math.floor(Math.random() * replyRate) == 0){
