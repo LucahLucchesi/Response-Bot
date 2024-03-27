@@ -11,6 +11,7 @@ INSTALLATION
 
 1. Clone repo or download preferred release
 2. Configure bot settings in src/config.json
+    - activity: discord activity
     - replyRate: integer that represents the average number of messages it takes for the bot to reply
     - responseList: string array of responses
 3. Rename .env_temp to .env

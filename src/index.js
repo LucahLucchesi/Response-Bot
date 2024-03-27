@@ -1,7 +1,7 @@
 // import token, discord library, and config vars
 require('dotenv').config();
 const { Client, IntentsBitField } = require('discord.js');
-const { replyRate, responses } = require('./config.json')
+const { activity, replyRate, responses } = require('./config.json')
 
 // client represents the bot
 // intents are discord events that the bot listens to
@@ -14,9 +14,13 @@ const client = new Client({
     ]
 });
 
-// console message on bot start
+// console message and set activity on bot start
 client.on('ready', (c) => {
     console.log(`${c.user.tag} is online`);
+    if(activity == null) return;
+    client.user.setActivity({
+        name: activity
+    });
 });
 
 // reply when message is sent
